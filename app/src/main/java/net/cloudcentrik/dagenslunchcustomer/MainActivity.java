@@ -17,7 +17,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     TextView output;
-    // GET Restaurant list
+    // GET a Restaurant
     String apiUrl = "http://dagens-lunch-v1.herokuapp.com/restaurant/1";
 
     RequestQueue requestQueue;
