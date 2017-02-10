@@ -7,10 +7,5 @@ import android.util.Log;
  */
 
 public class GeolocationCalculator {
-    void calculation(){
-        int n = 2+2;
-      //  System.out.println(n);
-        Log.d("Hello", "calculation: ");
-    }
 
 }
