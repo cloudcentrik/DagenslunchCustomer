@@ -1,69 +1,131 @@
 package net.cloudcentrik.dagenslunchcustomer;
 
-import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.util.List;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
-import retrofit2.Call;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+/*
 public class MainActivity extends AppCompatActivity {
 
-    private TextView txtTest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         txtTest= (TextView) findViewById(R.id.txtServerResponse);
 
-        final Button button = (Button) findViewById(R.id.getRequest);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Perform action on click
-                new DagenslunchAPICallTask().execute("");
-            }
-        });
 
     }
+}
+*/
 
-    private class DagenslunchAPICallTask extends AsyncTask<String, Void, String> {
+public class MainActivity extends AppCompatActivity {
 
-        List<People> persons;
-        @Override
-        protected String doInBackground(String... params) {
-            DagenslunchService dagenslunchService = DagenslunchService.retrofit.create(DagenslunchService.class);
-            Call<List<People>> call = dagenslunchService.getPeopleList();
-            try {
-                List<People> result = call.execute().body();
-                Log.d("test",result.get(0).toString());
-                persons=(List<People>)result;
+    TextView output;
+    String loginURL = "http://dagens-lunch-v1.herokuapp.com/people"; // your URL
+    String data = "";
 
-            }
-            catch (IOException ex){
+    RequestQueue requestQueue;
 
-            }
-            return "Executed";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        if (savedInstanceState != null) {
+            Log.d("STATE", savedInstanceState.toString());
         }
 
-        @Override
-        protected void onPostExecute(String result) {
+        requestQueue = Volley.newRequestQueue(this);
+        output = (TextView) findViewById(R.id.jsonData);
 
-            for(int i=0;i<persons.size();i++){
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, loginURL, (String)null, new Response.Listener<JSONObject>() {
 
-                txtTest.append("\n");
-                txtTest.append(persons.get(i).getFullName()+"  "+persons.get(i).getJobTitle());
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        output.setText("Response: " + response.toString());
+                    }
+                }, new Response.ErrorListener() {
 
-            }
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+                        Log.e("Volley","Error");
 
+                    }
+                });
+        // Access the RequestQueue through your singleton class.
+        //MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
 
-        }
+/*        JsonObjectRequest jor = new JsonObjectRequest(Request.Method.GET, loginURL, (String)null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
 
+                        try{
+
+                            JSONArray ja = response.getJSONArray("posts");
+
+                            for(int i=0; i < ja.length(); i++){
+
+                                JSONObject jsonObject = ja.getJSONObject(i);
+
+                                // int id = Integer.parseInt(jsonObject.optString("id").toString());
+                                String title = jsonObject.getString("title");
+                                String url = jsonObject.getString("URL");
+
+                                data += "Blog Number "+(i+1)+" \n Blog Name= "+title  +" \n URL= "+ url +" \n\n\n\n ";
+                            }
+
+                            output.setText(data);
+                        }catch(JSONException e){e.printStackTrace();}
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Volley","Error");
+
+                    }
+                }
+        );
+        requestQueue.add(jor);*/
     }
+
+ /*   @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }*/
+
 }
