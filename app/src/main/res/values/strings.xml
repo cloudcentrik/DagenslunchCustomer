@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">DagenslunchCustomer</string>
+    <string name="app_name">DaganLunceRestaurant</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="restaurant_prompt">Choose a restaurant</string>
+    <string-array name="restaurant_catagory_arrays">
+        <item>1 KM</item>
+        <item>5 KM</item>
+        <item>Pizzaria</item>
+        <item>Buffet</item>
+        <item>Traditional</item>
+        <item>Cheap price</item>
+        <item>Discount</item>
+    </string-array>
 </resources>
