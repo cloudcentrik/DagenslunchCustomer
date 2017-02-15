@@ -18,7 +18,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="60dp"
-        tools:context="com.example.johir.dagenslunchcustomer.MapViewActivity" />
+        tools:context="net.cloudcentrik.dagenslunchcustomer.MapActivity" />
 
 
 
