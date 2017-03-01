@@ -11,6 +11,7 @@ public class Restaurant {
     private String category;
     private double latitude;
     private double longitude;
+    private double distance;
 
     public int getId() {
         return id;
@@ -50,6 +51,14 @@ public class Restaurant {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public double getDistance(){
+        return distance;
+    };
+
+    public void setDistance(double distance){
+        this.distance = distance;
     }
 
     public Restaurant(int id, String name, String category, double latitude, double longitude) {
