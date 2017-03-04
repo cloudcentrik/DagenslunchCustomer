@@ -63,6 +63,8 @@ public class Filter {
         return currentLocation;
     }
 
+
+
     public static double getDistance(LatLng location1, LatLng location2){
         double distance = 1.00;
         return distance;
