@@ -32,7 +32,7 @@ import java.util.List;
 public class FragmentOfTextView extends Fragment {
 
     private ListView listView ;
-    private ArrayAdapter<String> adapter;
+    //private ArrayAdapter<String> adapter;
     private ArrayAdapter<String> arrayAdapter;
 
     String uRL_json_array = "http://dagens-lunch-v1.herokuapp.com/people"; // your URL
@@ -80,12 +80,12 @@ public class FragmentOfTextView extends Fragment {
                 if(position %2 == 1)
                 {
                     // Set a background color for ListView regular row/item
-                    view.setBackgroundColor(Color.parseColor("#FFB6B546"));
+                    view.setBackgroundColor(Color.parseColor("#90CAF9"));
                 }
                 else
                 {
                     // Set the background color for alternate row/item
-                    view.setBackgroundColor(Color.parseColor("#FFCCCB4C"));
+                    view.setBackgroundColor(Color.parseColor("#BBDEFB"));
                 }
                 return view;
             }

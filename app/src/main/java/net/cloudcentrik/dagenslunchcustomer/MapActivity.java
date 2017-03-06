@@ -84,23 +84,17 @@ public  class MapActivity extends FragmentActivity implements OnMapReadyCallback
         //googleMap.setMapType(com.google.android.gms.maps.GoogleMap.MAP_TYPE_HYBRID);
        // googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 17));
 
-
-
-
     }
+
     public void onMapReady(GoogleMap map) {
         this.googleMap = map;
         if(this.googleMap != null) {
             // *** Marker (Loop)
 
             for (int i = 0; i < location.size(); i++) {
-
                 Latitude = Double.parseDouble(location.get(i).get("Latitude").toString());
-
                 Longitude = Double.parseDouble(location.get(i).get("Longitude").toString());
-
                 String name = location.get(i).get("LocationName").toString();
-
 
                 MarkerOptions marker = new MarkerOptions().position(new LatLng(Latitude, Longitude)).title(name);
 
@@ -112,3 +106,4 @@ public  class MapActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 }
+
