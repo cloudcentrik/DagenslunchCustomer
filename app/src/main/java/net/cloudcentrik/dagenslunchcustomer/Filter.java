@@ -85,6 +85,7 @@ public class Filter {
                         Math.sin(dLng/2) * Math.sin(dLng/2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
         double dist = earthRadius * c;
+        dist *= 1609.34;
 
         return dist;
 
