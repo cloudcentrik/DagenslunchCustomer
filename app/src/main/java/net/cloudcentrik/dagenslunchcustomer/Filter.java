@@ -64,10 +64,29 @@ public class Filter {
     }
 
 
-
+   // Developed by Shohidul
     public static double getDistance(LatLng location1, LatLng location2){
-        double distance = 1.00;
-        return distance;
+        //double distance = 1.00;
+
+        //Calculating distance
+        double earthRadius = 3958.75;
+        double lat1 = location1.latitude;
+        double lat2 = location2.latitude;
+
+        System.out.println(location2.latitude);
+
+        double lng1 = location1.longitude;
+        double lng2 = location2.longitude;
+
+        double dLat = Math.toRadians(lat1-lat2);
+        double dLng = Math.toRadians(lng1-lng2);
+        double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(Math.toRadians(lat2)) * Math.cos(Math.toRadians(lat1)) *
+                        Math.sin(dLng/2) * Math.sin(dLng/2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        double dist = earthRadius * c;
+
+        return dist;
 
     }
 

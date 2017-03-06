@@ -31,9 +31,9 @@ public class GeoLocationCalculator implements GoogleApiClient.ConnectionCallback
     Location mLastLocation;
 
 
-    public LatLng getUserLocation(){
+    public static LatLng getUserLocation(){
         //LatLng latLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-        LatLng latLng = new LatLng(11.9746,57.7089);
+        LatLng latLng = new LatLng(57.686584, 11.977372);
 
         return latLng;
     }
